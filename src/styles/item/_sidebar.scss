@@ -1,0 +1,100 @@
+section.sidebar {
+    flex: 0 0 220px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+
+    > * {
+        flex: 1;
+    }
+
+    .item-summary {
+        @include serif-condensed;
+        flex: 0 0 28px;
+        line-height: 28px;
+        text-align: center;
+        font-size: var(--font-size-18);
+        color: #444;
+    }
+
+    ol.item-tags {
+        padding-left: 0;
+        flex: 0;
+        list-style: none;
+
+        .tag {
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+    }
+
+    .inventory-details,
+    .feat-details {
+        overflow: hidden scroll;
+        padding: 0 4px 0 0;
+
+        label {
+            font-weight: 500;
+            max-width: 6em;
+            white-space: nowrap;
+        }
+
+        .form-group {
+            margin: 3px 0;
+
+            input {
+                text-align: right;
+
+                &.left-of-select {
+                    min-width: 4ch;
+                    padding-right: 0.25em;
+                }
+            }
+
+            select {
+                max-width: 12em;
+            }
+
+            &.longtext {
+                height: fit-content;
+                align-items: start;
+                margin: 0 0 0.5em 0;
+
+                label {
+                    max-width: 6em;
+                    white-space: normal;
+                    line-height: unset;
+                }
+
+                .editor-content {
+                    min-height: 3em;
+                    > p {
+                        font-weight: 400;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        .price-fields {
+            display: flex;
+            gap: 4px;
+            input[name="system.price.per"] {
+                width: 22px;
+            }
+        }
+    }
+
+    select {
+        font-family: inherit;
+        font-size: 0.85em;
+        height: 1.8em;
+    }
+
+    button {
+        padding-top: 0;
+        padding-bottom: 0;
+        white-space: nowrap;
+    }
+}

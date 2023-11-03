@@ -1,0 +1,593 @@
+.pf2e.item.sheet {
+    @import "../reset";
+    @import "header";
+
+    .sheet-body {
+        height: calc(100% - 35px);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    &.action form {
+        @import "ability-sheet";
+    }
+
+    &.affliction form {
+        @import "affliction-sheet";
+    }
+
+    &.deity form {
+        @import "deity-sheet";
+    }
+
+    &.effect form {
+        @import "effect-sheet";
+    }
+
+    &.feat form {
+        @import "feat-sheet";
+    }
+
+    &.heritage form {
+        @import "heritage-sheet";
+    }
+
+    &.kit form {
+        @import "kit-sheet";
+    }
+
+    &.melee form {
+        @import "melee-sheet";
+    }
+
+    &.spell form {
+        @import "spell-sheet";
+    }
+
+    &.weapon form {
+        @import "weapon-sheet";
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        @import "abc-sheet";
+        @import "activations";
+        @import "mystification";
+        @import "rules";
+
+        label {
+            display: block;
+        }
+
+        input:not(:disabled) {
+            color: var(--color-text-dark-input);
+        }
+
+        .mce-panel span {
+            display: inherit;
+        }
+
+        &.editable .rollable:hover {
+            color: var(--text-dark);
+            text-shadow: 0 0 10px #00005a;
+            cursor: pointer;
+        }
+
+        .tab {
+            flex: 1;
+        }
+
+        &:has(.tab.active.rules) {
+            .sidebar-summary {
+                visibility: hidden;
+            }
+
+            section.sidebar {
+                display: none;
+            }
+        }
+
+        .tag-legacy {
+            float: left;
+            margin: 0 2px 2px 0;
+            padding: 0 3px;
+            font-size: var(--font-size-10);
+            line-height: 16px;
+            border: 1px solid #999;
+            border-radius: 3px;
+            white-space: normal;
+            font-weight: 500;
+        }
+
+        p.hint {
+            font-family: var(--font-primary);
+            font-weight: normal;
+        }
+
+        .item-controls {
+            display: flex;
+            margin: 0 0 0 4px;
+            align-items: baseline;
+            gap: 2px;
+        }
+
+        i.fa-info-circle {
+            cursor: help;
+        }
+
+        > nav {
+            display: flex;
+            align-items: baseline;
+            border-bottom: 1px solid var(--secondary-background);
+            flex: 0 0 30px;
+            line-height: 30px;
+            margin-bottom: 0.5rem;
+
+            a {
+                flex: 1 1 auto;
+            }
+
+            a.active {
+                text-decoration: underline;
+            }
+
+            .sidebar-summary {
+                flex: 0 0 220px;
+                margin: 0;
+                text-align: center;
+            }
+
+            .sheet-tabs {
+                font-weight: 500;
+                margin: 0;
+                flex: 1;
+                align-items: baseline;
+
+                > .list-row {
+                    font-size: var(--font-size-12);
+                    text-align: center;
+
+                    &:last-of-type {
+                        padding-right: 4px;
+                    }
+
+                    &.active {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        .sheet-content {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            height: calc(100% - 35px);
+            overflow: hidden;
+
+            > * {
+                flex: 1;
+            }
+            > section.sidebar,
+            > .sheet-body {
+                height: calc(100% - 10px);
+                overflow-y: auto;
+            }
+
+            @import "sidebar";
+
+            input {
+                &[type="text"],
+                &[type="number"] {
+                    border: 1px solid transparent;
+                    height: calc(100% - 2px);
+                    margin: 1px 0;
+                    width: calc(100% - 2px);
+                }
+            }
+
+            select {
+                background: rgba(255, 255, 255, 0.5);
+            }
+
+            button,
+            input:not([type="range"]),
+            select {
+                &:hover:not(:disabled),
+                &:focus {
+                    border-color: var(--color-border-dark-1);
+                    box-shadow: 0 0 5px var(--secondary);
+                }
+            }
+        }
+
+        .sheet-body {
+            input[type="text"],
+            input[type="number"] {
+                padding: 3px;
+
+                &:not(:disabled) {
+                    background: rgba(255, 255, 255, 0.5);
+                    border: 1px solid var(--color-text-light-5);
+                }
+            }
+
+            .tab.active {
+                overflow: hidden scroll;
+                padding-left: 0.5rem;
+
+                // DESCRIPTION
+                &.description {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+                    height: 100%;
+                    padding: 0 0.25em;
+
+                    > * {
+                        display: flex;
+                        overflow: hidden;
+                    }
+
+                    .editor {
+                        min-height: 2.5em;
+                        flex: 1;
+                    }
+
+                    // Allow editor scrolling to take over when editing
+                    &.editing {
+                        overflow: hidden;
+                        & > section {
+                            flex: 1;
+                        }
+                    }
+
+                    .gm-notes {
+                        background-color: var(--visibility-gm-bg);
+                        border: 1px dotted rgba(75, 74, 68, 0.5);
+                        padding: 0 0.25em;
+                        flex: 0 0 auto;
+
+                        &:not(.has-content) {
+                            display: none;
+                        }
+                    }
+
+                    .main {
+                        flex: 1 0 auto;
+                    }
+
+                    .editor {
+                        display: flex;
+                        flex-direction: column;
+                        a.add-gm-notes,
+                        a.editor-edit {
+                            font-size: 1.33em;
+                            background: rgb(205, 205, 205);
+
+                            i {
+                                width: 1em;
+                                text-align: center;
+                            }
+                        }
+
+                        a.add-gm-notes {
+                            border-radius: 4px;
+                            border: 1px solid var(--color-border-dark-1);
+                            box-shadow: 0 0 1px var(--color-shadow-dark);
+                            display: none;
+                            padding: 1px 2px;
+                            position: absolute;
+                            right: 35px;
+                            top: 5px;
+                        }
+
+                        &:hover a.add-gm-notes {
+                            display: block;
+                        }
+
+                        .tox {
+                            flex: 1;
+                        }
+                    }
+                }
+
+                // DETAILS
+                &.details {
+                    padding: 0.5rem 0.5rem 0;
+
+                    label {
+                        color: var(--color-text-dark-2);
+                        font-weight: 500;
+                        padding-right: 0.5em;
+                        white-space: nowrap;
+
+                        &.no-data {
+                            color: var(--color-text-dark-4);
+                        }
+                    }
+
+                    select {
+                        font-size: var(--font-size-12);
+                        height: 1.5rem;
+                        padding-right: 1em;
+                    }
+
+                    .tags .tag {
+                        font-size: var(--font-size-10);
+                    }
+
+                    fieldset.publication .data {
+                        @include publication-data;
+                    }
+                }
+            }
+
+            fieldset {
+                legend {
+                    font-weight: 600;
+                }
+
+                border: 1px solid var(--color-border-medium);
+                border-radius: 2px;
+                margin-bottom: 0.5rem;
+                padding: 0 0.5em 0.25em;
+
+                &.basics {
+                    border-color: transparent;
+                    padding: 0;
+                }
+            }
+
+            .editor {
+                @include journal-styling;
+            }
+        }
+
+        h3,
+        header {
+            .item-controls {
+                float: right;
+            }
+        }
+
+        .form-list,
+        fieldset {
+            h3 {
+                font-weight: 600;
+                font-size: 1.05em;
+                margin-bottom: 0.25em;
+            }
+        }
+
+        .form-list {
+            border-radius: 5px;
+            border: 1px solid var(--secondary-background);
+            list-style-type: none;
+            margin: 0.5em 0;
+            padding: 0.25em;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        .form-list.subsection {
+            padding: 0;
+
+            & > * {
+                padding: 0.25rem;
+            }
+
+            & > header {
+                align-items: baseline;
+                background-color: var(--secondary);
+                border-radius: 5px 5px 0 0;
+                color: var(--text-light);
+                display: flex;
+                justify-content: space-between;
+                margin: -1px -1px 0 -1px;
+                padding: 1px;
+                h3,
+                .item-controls {
+                    padding: 0.25rem;
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        .two-by-two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 0.25rem;
+            .item-controls {
+                margin-left: 2px;
+                gap: 0;
+            }
+        }
+
+        .form-group {
+            &.scalable {
+                height: auto;
+                min-height: 1.5rem;
+
+                ul.traits-list {
+                    list-style-type: none;
+                }
+            }
+
+            & > label:not(.large) {
+                max-width: 11em;
+            }
+
+            & > label.short {
+                max-width: 9em;
+            }
+
+            .item-controls {
+                flex: 0 1 auto;
+            }
+
+            input.adjusted-higher:not(:focus) {
+                font-weight: 700;
+                color: $adjusted-higher;
+            }
+
+            input.adjusted-lower:not(:focus) {
+                font-weight: 700;
+                color: $adjusted-lower;
+            }
+        }
+
+        .details-container,
+        .dice-data {
+            display: grid;
+            grid: "dice die type" / 40px 60px auto;
+        }
+
+        .effects-container {
+            display: grid;
+            grid: "effect number" / auto 40px;
+        }
+
+        .details-container-two-columns {
+            display: grid;
+            grid: "size type" / 50% 50%;
+        }
+
+        .details-container-three-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .form-fields {
+            & > label {
+                display: flex;
+                align-items: center;
+                white-space: nowrap;
+            }
+
+            select {
+                flex: 1;
+                width: auto;
+            }
+        }
+
+        .toggle-button-list {
+            display: flex;
+            gap: 2px;
+            margin: 4px 0;
+
+            button {
+                margin: 0;
+                font-size: var(--font-size-10);
+                line-height: 16px;
+                display: flex;
+                align-items: center;
+                white-space: nowrap;
+                padding: 3px 4px;
+            }
+        }
+
+        .consumable-details {
+            flex: 0 0 24px;
+
+            label {
+                font-weight: bold;
+            }
+
+            input {
+                flex: 0 0 24px;
+                margin-right: 6px;
+                text-align: right;
+            }
+
+            span {
+                line-height: 24px;
+            }
+
+            .max-charges {
+                flex: 0 0 16px;
+                text-align: center;
+            }
+        }
+
+        .consumable-charges {
+            label {
+                flex: 0 0 144px;
+            }
+
+            input {
+                flex: 0 0 64px;
+                text-align: center;
+            }
+
+            span.flex0 {
+                line-height: 24px;
+            }
+        }
+
+        .feat-uses {
+            select {
+                flex: 2;
+                margin-right: 5px;
+            }
+
+            input {
+                flex: 1;
+                text-align: center;
+            }
+
+            span.sep {
+                flex: 0 0 16px;
+                line-height: 24px;
+                font-size: var(--font-size-14);
+                text-align: center;
+            }
+        }
+
+        .spell-components {
+            input {
+                margin-left: 0;
+            }
+            label {
+                padding-right: 6px;
+            }
+        }
+
+        input {
+            &.adjusted:not(:focus) {
+                font-weight: 700;
+                color: $adjusted-higher;
+            }
+        }
+
+        .frequency {
+            align-items: baseline;
+            display: flex;
+            gap: 0.2rem;
+            text-align: end;
+            &.empty {
+                justify-content: flex-end;
+            }
+            select {
+                flex: 1 1 auto;
+            }
+            a {
+                align-self: center;
+            }
+        }
+    }
+}
+
+@import "persistent-damage-dialog";

@@ -1,0 +1,378 @@
+&.character {
+    select {
+        width: calc(100% - 6px);
+        background-color: var(--alt);
+        border: 1px solid darken($alt-color, 8);
+        &:disabled {
+            cursor: initial;
+        }
+    }
+
+    hr {
+        margin: 10px 6px 10px 0;
+    }
+
+    .pc {
+        h3 {
+            background-color: rgba($text-dark-color, 0.1);
+            border: none;
+            color: var(--text-dark);
+            display: flex;
+            font: 700 var(--font-size-14) var(--body-serif);
+            grid-area: mod;
+            line-height: 1;
+            margin: 0;
+            padding: 8px 4px 6px;
+            width: calc(100% - 6px);
+
+            a {
+                margin-left: auto;
+
+                i {
+                    position: relative;
+                    right: -2px;
+                    top: -2px;
+                    float: right;
+                }
+            }
+
+            span.value {
+                display: inline-block;
+                max-width: 87%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .character-details {
+        display: grid;
+        grid:
+            "img alignment deity" 46px
+            "img details details" auto
+            / 120px 130px 1fr;
+        margin-top: 4px;
+
+        .image-container {
+            grid-area: img;
+            margin-left: 0.25rem;
+            z-index: 3;
+
+            .actor-image {
+                @include brown-border;
+                border-radius: 0;
+                max-height: 11rem;
+                object-fit: cover;
+                object-position: top;
+                width: 100%;
+            }
+        }
+
+        .alignment {
+            grid-area: alignment;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url("/assets/sheet/banner-bg.webp") repeat-x center;
+            z-index: 1;
+
+            .bio-alignment {
+                position: absolute;
+                left: 0;
+            }
+
+            select {
+                background: none;
+                border: none;
+                box-shadow: none;
+                color: var(--text-dark);
+                cursor: pointer;
+                display: block;
+                font-family: var(--body-serif);
+                font-size: var(--font-size-14);
+                font-weight: 700;
+                outline: none;
+                overflow-x: visible;
+                padding-left: 8px;
+                width: auto;
+
+                line-height: 1;
+                text-transform: capitalize;
+                margin-top: 2px;
+
+                option {
+                    color: var(--text-light);
+                    font: initial;
+                }
+            }
+
+            input[type="text"] {
+                font: 700 var(--font-size-14) var(--body-serif);
+                text-align: center;
+                max-width: 138px;
+            }
+            &::after {
+                position: absolute;
+                content: "";
+                height: 46px;
+                width: 15px;
+                top: 0;
+                right: -11px;
+                background: url("/assets/sheet/banner-bg2.webp") no-repeat right;
+            }
+        }
+
+        .pc_deity {
+            align-items: center;
+            display: flex;
+            grid-area: deity;
+            margin-left: auto;
+            min-width: 10em;
+            padding-bottom: 0.7em;
+
+            .input {
+                display: flex;
+                flex-flow: column wrap;
+                justify-content: end;
+
+                span {
+                    text-align: right;
+                }
+
+                h3 {
+                    min-width: 9em;
+
+                    span {
+                        max-width: 10em;
+                    }
+                }
+            }
+
+            img.symbol {
+                @include brown-border;
+                border-radius: 50%;
+                height: 32px;
+                margin: 0.5rem 0 0 0.5rem;
+                width: 32px;
+            }
+        }
+
+        .detail-sheet {
+            grid-area: details;
+            display: grid;
+            grid-template-columns: 44% 55%;
+            grid-template-rows: repeat(2, 42px);
+            grid-row-gap: 8px;
+            padding-left: 12px;
+            margin-top: 8px;
+
+            .pc {
+                &_heritage,
+                &_background,
+                &_weight {
+                    margin: 0;
+                }
+            }
+            .detail-small {
+                display: flex;
+            }
+        }
+
+        .detail-item-control {
+            cursor: pointer;
+            margin-left: auto;
+
+            i.fa-ellipsis-v:hover {
+                text-shadow: 0 0 8px var(--color-shadow-primary);
+            }
+
+            #context-menu {
+                left: -85px;
+                min-width: 105px;
+                padding: 0;
+                text-align: left;
+
+                .context-item {
+                    font-family: var(--font-primary);
+                    font-weight: normal;
+                    min-width: 105px;
+
+                    i {
+                        position: static;
+                        float: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .character-background {
+        display: flex;
+        flex-wrap: wrap;
+
+        label {
+            align-items: start;
+            display: flex;
+            flex: 1 0 0;
+            flex-direction: column;
+            justify-content: start;
+            margin-bottom: 8px;
+            span {
+                width: 100%;
+            }
+        }
+    }
+
+    .character-traits {
+        display: flex;
+        flex-wrap: wrap;
+
+        .tags {
+            width: 100%;
+        }
+
+        .pc {
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: start;
+            flex: 20%;
+            margin-bottom: 8px;
+
+            span {
+                width: 100%;
+            }
+
+            span.speed {
+                * {
+                    width: 50%;
+                }
+            }
+
+            &_land-speed,
+            &_size {
+                flex: 50%;
+            }
+
+            &_speed-types {
+                flex: 50%;
+            }
+
+            &_senses {
+                flex: 50%;
+            }
+
+            &_languages {
+                flex: 50%;
+                margin-bottom: 0;
+            }
+            &_traits {
+                flex: 50%;
+                margin-bottom: 0;
+            }
+
+            label,
+            h4 {
+                margin: 0;
+                white-space: nowrap;
+            }
+
+            .tags {
+                margin: 0;
+                padding: 0;
+            }
+
+            .tags,
+            select,
+            input,
+            h3 {
+                margin-top: 4px;
+            }
+        }
+    }
+
+    .attributes {
+        @include p-reset;
+        display: grid;
+        gap: 12px;
+        grid: 1fr / repeat(6, 1fr);
+        justify-content: center;
+        list-style: none;
+
+        .attribute {
+            display: grid;
+            grid:
+                "abbrev" auto
+                "mod" 1fr
+                "label" auto
+                / 1fr;
+            column-gap: 10px;
+            align-items: center;
+            &:focus-within {
+                .abbreviation {
+                    filter: opacity(1);
+                }
+            }
+
+            &.key {
+                .abbreviation,
+                .modifier {
+                    color: var(--secondary);
+                }
+            }
+
+            .abbreviation {
+                @include p-reset;
+                border: none;
+                color: var(--primary);
+                font: 400 22px var(--serif-condensed);
+                grid-area: abbrev;
+                position: relative;
+                text-align: center;
+                text-transform: capitalize;
+
+                i.key,
+                i.apex {
+                    bottom: 4px;
+                    position: absolute;
+                    font-size: var(--font-size-12);
+                }
+
+                i.key {
+                    left: 2px;
+                }
+
+                i.apex {
+                    right: 2px;
+
+                    &.unselected:not(:hover) {
+                        opacity: 0.75;
+                    }
+                }
+            }
+
+            h3.modifier {
+                @include flex-center;
+                @include frame-elegant;
+                grid-area: mod;
+                font-size: var(--font-size-24);
+                font-family: var(--serif);
+                font-weight: 700;
+                height: 46px;
+                margin: 0;
+                padding-right: 4px;
+            }
+
+            .label {
+                color: rgba(68, 55, 48, 1);
+                grid-area: label;
+                margin: 0;
+                opacity: 0.4;
+                padding: 2px;
+                text-align: center;
+            }
+        }
+    }
+}

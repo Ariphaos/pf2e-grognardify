@@ -1,0 +1,12 @@
+.affliction-stage {
+    .link:not(.linked) {
+        opacity: 0.6;
+        color: #a00;
+    }
+
+    .formula-row {
+        align-items: center;
+        display: flex;
+        gap: 4px;
+    }
+}

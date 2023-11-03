@@ -1,0 +1,49 @@
+.damage-formulas {
+    margin-top: 8px;
+
+    .form-fields {
+        gap: 2px;
+        margin-top: 4px;
+    }
+
+    input[type="checkbox"] {
+        margin-left: 2px;
+    }
+
+    .traits-list {
+        display: flex;
+        margin-top: 2px;
+    }
+
+    .tag {
+        float: none; // remove when global rule is removed
+    }
+}
+
+button[data-action="damage-add"] {
+    margin-top: 4px;
+}
+
+button + fieldset {
+    margin-top: 0.5rem;
+}
+
+.overlay {
+    .traits {
+        align-items: center;
+        display: flex;
+        gap: 4px;
+        .tags {
+            flex: 1;
+        }
+    }
+}
+
+.variants .variant {
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.2fr;
+
+    .item-controls {
+        justify-self: end;
+    }
+}

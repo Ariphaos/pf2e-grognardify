@@ -1,0 +1,137 @@
+.sheet.hazard {
+    @import "../red-action-boxes";
+
+    ul,
+    ol {
+        @include p-reset;
+        list-style-type: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        @include p-reset;
+        border-bottom: none;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        .tagify > span {
+            min-width: 20px;
+        }
+
+        .tagify--hasMaxTags > span {
+            display: none;
+        }
+    }
+
+    .window-content {
+        @include p-reset;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+        @include p-reset;
+        background: none;
+        border: 1px solid transparent;
+
+        &:hover:not(:disabled),
+        &:focus {
+            border: 1px solid black;
+            box-shadow: 0 0 10px #00005a;
+        }
+    }
+
+    select {
+        font-size: var(--font-size-12);
+        height: 2em;
+    }
+
+    .container {
+        display: flex;
+        background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .content {
+        flex: 1;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding: 0 5px 20px 5px;
+        overflow: hidden scroll;
+    }
+
+    @import "header", "sidebar";
+
+    .section-container {
+        padding: 4px 6px 0;
+
+        .editor {
+            width: 100%;
+
+            .tox {
+                width: 100%;
+            }
+        }
+
+        > .section-body {
+            padding: 4px;
+        }
+
+        &.skills > .section-body {
+            .list {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+
+        .actions-list,
+        .attacks-list {
+            border-bottom: 1px solid var(--alt);
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .action {
+                padding: 4px 0;
+            }
+        }
+
+        &.publication {
+            margin-top: 0.5rem;
+
+            .section-header {
+                background: none;
+                color: var(--color-pf-primary);
+            }
+
+            .section-body {
+                @include publication-data;
+                border-top: none;
+                padding: 0.25rem 0.5rem;
+
+                input[type="text"] {
+                    background: rgba(black, 0.05);
+                }
+            }
+        }
+    }
+
+    // When the editor is open, fill more space so the user has something to work with
+    .tox.tox-tinymce {
+        // !important to work around tox's limitations and a foundry issue where initial height is overwritten
+        height: 200px !important;
+    }
+
+    // Hide editor button for those controlled by section controls
+    // In the current version of foundry, not rendering the button in handlebars auto opens the prompt instead.
+    .hazard-editor .editor .editor-edit {
+        display: none;
+    }
+}

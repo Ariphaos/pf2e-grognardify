@@ -1,0 +1,18 @@
+.inventory {
+    flex-basis: 100%;
+    flex-direction: column;
+    overflow-y: hidden;
+    padding-bottom: 1.25rem;
+
+    &.active {
+        display: flex;
+    }
+
+    .inventory-section {
+        max-height: calc(100% - 1rem);
+
+        .inventory-header {
+            background-color: var(--primary-background);
+        }
+    }
+}

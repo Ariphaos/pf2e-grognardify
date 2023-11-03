@@ -1,0 +1,147 @@
+nav.sheet-navigation {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    background: var(--secondary);
+    background:
+        url("/assets/sheet/border-pattern.webp") repeat-x top,
+        url("/assets/sheet/border-pattern.webp") repeat-x bottom,
+        var(--secondary);
+    transition: all 0.1s ease-out;
+    box-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    position: relative;
+
+    .navigation-title {
+        color: var(--text-light);
+        margin-right: auto;
+        padding-left: 1em;
+        white-space: nowrap;
+        width: 7em;
+    }
+
+    > a {
+        @include flex-center;
+        margin: 0 6px;
+        font-size: var(--font-size-12);
+    }
+
+    .item {
+        height: 24px;
+        width: 24px;
+        border-radius: 50%;
+        z-index: 1;
+        transition: all 0.1s ease-out;
+        color: var(--tertiary);
+        fill: var(--tertiary);
+        background-image: url("/assets/sheet/nav-item-inactive.webp");
+        background-size: contain;
+
+        /* prettier-ignore */
+        box-shadow:
+            0 0 0 1px var(--tertiary),
+            0 0 0 2px #9f725b,
+            inset 0 0 4px rgba(black, 0.25);
+
+        &.active {
+            box-shadow:
+                0 0 0 1px var(--tertiary),
+                0 0 0 2px #9f725b,
+                inset 0 0 4px rgba(black, 0.25),
+                0 0 8px var(--tertiary);
+        }
+
+        &:last-child {
+            margin-right: 10px;
+        }
+
+        &:hover,
+        &.active {
+            z-index: 2;
+            transform: scale(1.2);
+            color: var(--text-light);
+            fill: var(--text-light);
+            background-image: url("/assets/sheet/nav-item.webp");
+        }
+
+        .fas {
+            padding-bottom: 0;
+        }
+
+        &:hover .pfs-icon {
+            filter: drop-shadow(0 0 8px var(--color-shadow-primary));
+        }
+
+        // Actions tab icon
+        .action-glyph {
+            font-size: 1rem;
+        }
+    }
+}
+
+/** White background navigation with little decorations on the left and right */
+nav.sub-nav {
+    @include p-reset;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+
+    background-color: var(--bg);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+    width: 100%;
+    flex: 0 0 2.5rem;
+
+    &::before,
+    &::after {
+        content: "";
+        width: 37px;
+        height: 16px;
+        background: url("/assets/sheet/sub-nav-decoration.webp");
+        margin: 0 16px;
+    }
+
+    &::after {
+        transform: scaleX(-100%);
+    }
+
+    a,
+    .tab {
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+        border-right: 1px solid rgba(0, 0, 0, 0.2);
+        color: var(--alt);
+        cursor: pointer;
+        display: block;
+        font: 400 var(--font-size-16) var(--serif);
+        flex: 1;
+        margin: 0 0.25rem;
+        max-width: 30%;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.1s ease-out;
+
+        &.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        &:first-child {
+            border-left: none;
+        }
+
+        &:last-child {
+            border-right: none;
+        }
+
+        &:hover {
+            text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+        }
+    }
+}
+
+.tab nav.sub-nav {
+    padding-right: 20px;
+}

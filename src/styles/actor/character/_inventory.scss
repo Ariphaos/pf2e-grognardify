@@ -1,0 +1,15 @@
+&.inventory {
+    height: calc(100% - 40px);
+
+    .inventory-list {
+        padding-right: 0.1rem;
+    }
+
+    .item-controls {
+        flex: 0 0 100px;
+    }
+
+    .wealth {
+        margin-bottom: 0.5rem;
+    }
+}

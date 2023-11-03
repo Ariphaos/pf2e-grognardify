@@ -1,0 +1,137 @@
+.entries-list {
+    list-style: none;
+    padding: 2px;
+    margin: 0;
+
+    .spellcasting-entry {
+        display: block;
+        width: 100%;
+        margin: 0px;
+        border: 1px solid var(--sub);
+        border-radius: 4px;
+
+        &:not(:first-child) {
+            margin-top: 0.5rem;
+        }
+
+        .header {
+            align-items: baseline;
+            background-color: var(--primary);
+            border-radius: 3px 3px 0 0;
+            color: var(--text-light);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 0.25em;
+            justify-content: space-between;
+            padding: 4px 0.5em;
+
+            .drag-handle {
+                cursor: move;
+            }
+
+            h4.name {
+                flex: 1;
+                margin: 0 4px 0 0;
+                padding-right: 6px;
+                width: max-content;
+
+                input {
+                    color: var(--text-light);
+                    max-width: 100%;
+                    font-weight: 500;
+                    border: none;
+
+                    &:focus,
+                    &:hover {
+                        box-shadow: none;
+                    }
+
+                    &:read-only {
+                        pointer-events: none;
+                    }
+                }
+            }
+
+            .inline-field {
+                flex: 0;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                align-items: baseline;
+
+                label {
+                    margin-left: 2px;
+                    flex: 1;
+                }
+
+                input {
+                    margin-left: 4px;
+                }
+
+                .attack-input,
+                .dc-input {
+                    flex: 1 0 32px;
+                    text-align: center;
+                    background-color: var(--text-light);
+                    font-weight: bold;
+                    width: 32px;
+                }
+            }
+
+            .attribute {
+                select {
+                    background: rgba(white, 0.5);
+                    font-size: var(--font-size-10);
+                    max-width: 55px;
+                    padding: 2px;
+                }
+            }
+
+            .item-controls {
+                display: flex;
+                justify-content: space-between;
+
+                a {
+                    padding: 2px;
+                }
+            }
+        }
+
+        .spell-level-header input {
+            background: var(--text-light);
+            border: 1px solid transparent;
+            color: var(--text-dark);
+            flex: 1 0 2rem;
+            font-weight: 700;
+            height: 18px;
+            text-align: center;
+            width: 2rem;
+        }
+    }
+}
+
+.footer {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin-top: 12px;
+
+    button.spellcasting-create {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        gap: 0.25rem;
+        margin: 0 0.5rem;
+        min-height: 1rem;
+        box-shadow:
+            inset 0 0 0 1px rgba(0, 0, 0, 0.3),
+            inset 0 0 0 2px rgba(255, 255, 255, 0.2);
+        background: var(--primary);
+        color: var(--text-light);
+        white-space: nowrap;
+        border-radius: 3px;
+        border: none;
+    }
+}

@@ -1,0 +1,122 @@
+.crb-style {
+    display: flex;
+
+    .details-label {
+        color: var(--primary);
+        font: 600 var(--font-size-11) / 1em var(--sans-serif);
+        margin-left: 1px;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .details-input {
+        color: var(--text-dark);
+        font-family: var(--body-serif);
+        font-weight: bold;
+        width: calc(100% - 6px);
+        border-bottom: 1px solid var(--color-border-dark-input);
+        background-color: rgba($text-dark-color, 0.1);
+
+        &::placeholder {
+            filter: opacity(0.5);
+        }
+        &:focus {
+            border-bottom: 1px solid var(--alt);
+        }
+        &[type="number"] {
+            padding-bottom: 0;
+            padding-left: 4px;
+        }
+    }
+
+    input {
+        border: none;
+        border-radius: 0;
+        &:focus {
+            box-shadow: none;
+            &::placeholder {
+                color: transparent;
+            }
+        }
+        &::placeholder {
+            color: inherit;
+        }
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+        }
+        &[type="number"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+    }
+
+    select {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        background-color: var(--alt);
+        background-image: url("/assets/icons/chevron-down.svg");
+        background-position: right 0.25em top 50%;
+        background-repeat: no-repeat;
+        background-size: 1em auto;
+        border-radius: 2px;
+        border: 1px solid #53422a;
+        color: var(--text-light);
+        font: 500 var(--font-size-14) var(--serif);
+        height: auto;
+        line-height: 1;
+        padding: 0.25rem 1.1rem 0.25rem 0.25rem;
+        position: relative;
+        text-overflow: ellipsis;
+
+        &:not(:disabled) {
+            cursor: pointer;
+        }
+
+        option {
+            background-color: var(--alt);
+        }
+    }
+
+    .dots span {
+        cursor: pointer;
+    }
+}
+
+// Disabled range input
+input[type="range"]:disabled {
+    &::-webkit-slider-runnable-track {
+        background: rgba(0, 0, 0, 0.1);
+        border: rgba(0, 0, 0, 0.1);
+        box-shadow:
+            1px 1px 1px rgba(0, 0, 0, 0.1),
+            0px 0px 1px rgba(0, 0, 0, 0.1);
+        cursor: default;
+    }
+    &::-moz-range-track {
+        background: rgba(0, 0, 0, 0.1);
+        border: rgba(0, 0, 0, 0.1);
+        box-shadow:
+            1px 1px 1px rgba(0, 0, 0, 0.1),
+            0px 0px 1px rgba(0, 0, 0, 0.1);
+        cursor: default;
+    }
+    &::-webkit-slider-thumb {
+        background: var(--color-text-light-1);
+        border: var(--color-text-light-1);
+        box-shadow:
+            1px 1px 1px var(--color-text-light-1),
+            0px 0px 1px var(--color-text-light-1);
+        cursor: default;
+    }
+    &::-moz-range-thumb {
+        background: var(--color-text-light-1);
+        border: var(--color-text-light-1);
+        box-shadow:
+            1px 1px 1px var(--color-text-light-1),
+            0px 0px 1px var(--color-text-light-1);
+        cursor: default;
+    }
+}
